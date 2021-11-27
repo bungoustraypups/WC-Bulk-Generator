@@ -30,8 +30,9 @@ def main():
         "First, please enter your clans (seperated by commas): ")
     clanlist = clanInput.split(", ")
     coatColors = ["black", "brown", "blue", "silver", "white", "ginger", "red",
-                  "white", "cream", "golden", "russet", "yellow", "sandy", "beige", "tan", "gray"]
-    coatMarkings = ["tabby", "tuxedo", "tortieshell", "calico"]
+                  "white", "cream", "golden", "russet", "yellow", "sandy", "beige", "tan", "gray", "light gray", "dark gray"]
+    coatMarkings = ["classic tabby", "rosette tabby", "barred ticked tabby", "ticked tabby", "mackerel tabby",
+                    "classic tabby", "spotted tabby", "pinstripe tabby", "tuxedo", "tortoiseshell", "calico"]
     possibleEyes = ["blue", "green", "brown",
                     "black", "amber", "yellow", "gray", "hazel"]
     possibleTail = ["short", "long", "stub", "no"]
@@ -70,9 +71,54 @@ def main():
         prefix = possiblePrefix[radPrefix-1]
         suffix = possibleSuffix[radSuffix-1]
         clan = clanlist[radClan-1]
-        color = coatColors[radCoat-1]
-        markings = coatMarkings[radMarkings-1]
         eyeColor = possibleEyes[radEyes-1]
+        color = coatColors[radCoat-1]
+
+        if color == "white":
+            coatMarkings.extend(("seal point", "blue point", "chocolate point",
+                                "lilac point", "cinnamon point", "fawn point", "fawn mink"))
+            radMarkings = random.randint(1, len(coatMarkings))
+        else:
+            pass
+
+        if color == "white" and eyeColor == "blue" and color != "and":
+            coatMarkings.append("flame point")
+            radMarkings = random.randint(1, len(coatMarkings))
+        else:
+            pass
+
+        if color == "brown":
+            coatMarkings.append("seal mink")
+            radMarkings = random.randint(1, len(coatMarkings))
+        else:
+            pass
+
+        if color == "light gray":
+            coatMarkings.append("blue mink")
+            radMarkings = random.randint(1, len(coatMarkings))
+        else:
+            pass
+
+        if color == "cream":
+            coatMarkings.append("chocolate mink")
+            radMarkings = random.randint(1, len(coatMarkings))
+        else:
+            pass
+
+        if color == "silver":
+            coatMarkings.append("lilac mink")
+            radMarkings = random.randint(1, len(coatMarkings))
+        else:
+            pass
+
+        if color == "tan":
+            coatMarkings.append("cinnamon mink")
+            radMarkings = random.randint(1, len(coatMarkings))
+        else:
+            pass
+
+        markings = coatMarkings[radMarkings-1]
+
         tailType = possibleTail[radTail-1]
         furLength = possibleLength[radLength-1]
         rank = possibleRank[radRank-1]
@@ -103,29 +149,33 @@ def main():
                    eyeColor, tailType, furLength, rank, personality1, personality2, personality3)
         clanMembers.append(cat)
 
+        coatMarkings = ["classic tabby", "rosette tabby", "barred ticked tabby", "ticked tabby", "mackerel tabby",
+                        "classic tabby", "spotted tabby", "pinstripe tabby", "tuxedo", "tortoiseshell", "calico"]
+
     print()
 
     for cat in clanMembers:
         if cat.eyeColor[0] == "a":
             if cat.tailType == "no":
-                print("Name:", cat.prefix + cat.suffix, "|", "Clan:", cat.clan, "|", "Rank:", cat.rank, "|", "Appearence:",
+                print("Name:", cat.prefix + cat.suffix, "|", "Clan:", cat.clan, "|", "Rank:", cat.rank, "|", "Appearance:",
                       "An", cat.eyeColor, "eyed,", cat.furLength, "furred,", cat.color, cat.markings, "with", cat.tailType, "tail", "|", "Personality Traits:", cat.personality1 + ",", cat.personality2 +
                       ", and", cat.personality3)
             else:
-                print("Name:", cat.prefix + cat.suffix, "|", "Clan:", cat.clan, "|", "Rank:", cat.rank, "|", "Appearence:",
+                print("Name:", cat.prefix + cat.suffix, "|", "Clan:", cat.clan, "|", "Rank:", cat.rank, "|", "Appearance:",
                       "An", cat.eyeColor, "eyed,", cat.furLength, "furred,", cat.color, cat.markings, "with a", cat.tailType, "tail", "|", "Personality Traits:", cat.personality1 + ",", cat.personality2 + ", and", cat.personality3)
 
         else:
             if cat.tailType == "no":
-                print("Name:", cat.prefix + cat.suffix, "|", "Clan:", cat.clan, "|", "Rank:", cat.rank, "|", "Appearence:",
+                print("Name:", cat.prefix + cat.suffix, "|", "Clan:", cat.clan, "|", "Rank:", cat.rank, "|", "Appearance:",
                       "A", cat.eyeColor, "eyed,", cat.furLength, "furred,", cat.color, cat.markings, "with", cat.tailType, "tail", "|", "Personality Traits:", cat.personality1 + ",", cat.personality2 + ", and", cat.personality3)
             else:
-                print("Name:", cat.prefix + cat.suffix, "|", "Clan:", cat.clan, "|", "Rank:", cat.rank, "|", "Appearence:",
+                print("Name:", cat.prefix + cat.suffix, "|", "Clan:", cat.clan, "|", "Rank:", cat.rank, "|", "Appearance:",
                       "A", cat.eyeColor, "eyed,", cat.furLength, "furred,", cat.color, cat.markings, "with a", cat.tailType, "tail", "|", "Personality Traits:", cat.personality1 + ",", cat.personality2 + ", and", cat.personality3)
 
     print()
 
-    input("Hit enter when ready to close.")
+    print("Hit enter when ready to close")
+    input()
 
 
 main()
