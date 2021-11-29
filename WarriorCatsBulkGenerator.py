@@ -38,7 +38,7 @@ def main():
     possibleTail = ["short", "long", "stub", "no"]
     possibleLength = ["short", "long"]
     possibleRank = ["Kit", "Apprentice", "Medicine Cat Apprentice",
-                    "Warrior", "Medicine Cat", "Elder"]
+                    "Warrior", "Warrior", "Medicine Cat", "Elder"]
     possiblePersonality = ["Abrasive", "Accessible", "Active", "Adaptable", "Admirable", "Adventurous", "Aggressive", "Agreeable", "Alert", "Aloof", "Amiable", "Anticipative", "Anxious", "Apathetic", "Appreciative", "Arrogant", "Asocial", "Aspiring", "Assertive", "Awkward", "Balanced", "Benevolent", "Bland", "Blunt", "Boisterous", "Brave", "Brilliant", "Brutal", "Calm", "Capable", "Captivating", "Careless", "Caring", "Cautious", "Charismatic", "Charmin", "Cheerful", "Childish", "Clear-headed", "Clever", "Cold", "Compassionate", "Complacent", "Complaintive", "Compulsive", "Confident", "Confused", "Conscientious", "Considerate", "Contemplative", "Cooperative", "Courageous", "Courteous", "Cowardly", "Crafty", "Crass", "Creative", "Crude", "Cruel", "Curious", "Cynical", "Daring", "Deceitful", "Decent", "Decisive", "Dedicated", "Delicate", "Demanding", "Dependent", "Desperate", "Destructive", "Devious", "Difficult", "Dignified", "Disciplined", "Discontented", "Discouraging", "Dishonest", "Disloyal", "Disobedient", "Disorderly", "Disorganized", "Disrespectful", "Disruptive", "Dissolute", "Dramatic", "Dull", "Dutiful", "Earnest", "Easy", "Efficient", "Egocentric", "Elegant", "Energetic", "Enthusiastic", "Envious", "Erratic", "Excitable", "Exciting", "Extreme", "Faithful", "Faithless", "Farsighted", "Fearful", "Fickle", "Fiery", "Firm", "Fixed", "Flamboyant", "Flexible", "Focused", "Foolish", "Forgetful", "Forgiving", "Forthright", "Fraudulent", "Freethinking", "Friendly", "Frightening", "Fun-loving", "Funny", "Generous", "Gentle", "Genuine", "Gloomy", "Going", "Graceless", "Greedy", "Grim", "Gullible", "Hard-working", "Hateful", "Haughty", "Helpful", "Heroic", "Hesitant",
                            "Honest", "Honorable", "Hostile", "Humble", "Humorous", "Idealistic", "Ignorant", "Imaginative", "Impatient", "Impractical", "Imprudent", "Impulsive", "Inconsiderate", "Incurious", "Indecisive", "Independent", "Individualistic", "Insecure", "Insensitive", "Insightful", "Insincere", "Intelligent", "Intuitive", "Irrational", "Irresponsible", "Irritable", "Kind", "Knowledgeable", "Lazy", "Logical", "Loving", "Loyal", "Malicious", "Mannerless", "Mature", "Meddlesome", "Melancholic", "Miserable", "Misguided", "Modest", "Moody", "Morbid", "Motherly", "Naive", "Narrow", "Narrow-minded", "Neglectful", "Obnoxious", "Observant", "Obsessive", "Opinionated", "Opportunistic", "Optimistic", "Organized", "Passionate", "Passive", "Patient", "Peaceful", "Perfectionist", "Persuasive", "Petty", "Possessive", "Power-hungry", "Practical", "Pretentious", "Procrastinating", "Protective", "Rational", "Realistic", "Regretful", "Relaxed", "Reliable", "Resentful", "Resourceful", "Respectful", "Responsible", "Rigid", "Rowdy", "Scornful", "Secretive", "Self-indulgent", "Selfish", "Selfless", "Sensitive", "Sentimental", "Serious", "Shallow", "Shy", "Silly", "Single-minded", "Sly", "Sociable", "Spontaneous", "Steadfast", "Strong", "Strong-willed", "Sweet", "Sympathetic", "Thievish", "Thorough", "Thoughtless", "Timid", "Tolerant", "Treacherous", "Troublesome", "Trusting", "Unappreciative", "Uncaring", "Uncooperative", "Uncreative", "Uncritical", "Understanding", "Undisciplined", "Ungrateful", "Unrealistic", "Unreliable", "Vague", "Venal", "Venomous", "Vindictive", "Vulnerable", "Warm", "Weak", "Weak-willed", "Well-meaning", "Willful", "Wise", "Wishful", "Witty", "Youthful", ]
 
@@ -81,7 +81,7 @@ def main():
         else:
             pass
 
-        if color == "white" and eyeColor == "blue" and color != "and":
+        if color == "white" and eyeColor == "blue":
             coatMarkings.append("flame point")
             radMarkings = random.randint(1, len(coatMarkings))
         else:
@@ -143,14 +143,41 @@ def main():
 
         radWhite = random.randint(1, 10)
 
+        for cat in clanMembers:
+            if cat.rank == "Medicine Cat" and rank == "Medicine Cat":
+                possibleRank = ["Kit", "Apprentice", "Medicine Cat Apprentice",
+                                "Warrior", "Warrior", "Warrior", "Elder"]
+                radRank = random.randint(1, len(possibleRank))
+                rank = possibleRank[radRank-1]
+            else:
+                pass
+
+        for cat in clanMembers:
+            if cat.rank == "Medicine Cat Apprentice" and rank == "Medicine Cat Apprentice":
+                possibleRank = ["Kit", "Apprentice", "Medicine Cat",
+                                "Warrior", "Warrior", "Elder"]
+                radRank = random.randint(1, len(possibleRank))
+                rank = possibleRank[radRank-1]
+            else:
+                pass
+
         if radWhite <= 4 and color != "white":
             color = color + " and white"
+
         cat = Cats(prefix, suffix, clan, color, markings,
                    eyeColor, tailType, furLength, rank, personality1, personality2, personality3)
         clanMembers.append(cat)
 
+        # if clanMembers.index("Medicine Cat") == True and cat.rank == "Medicine Cat":
+        #     possibleRank = ["Kit", "Apprentice", "Medicine Cat Apprentice",
+        #                     "Warrior", "Warrior", "Warrior", "Warrior", "Elder"]
+        #     radRank = random.randint(1, len(possibleRank))
+        #     rank = possibleRank[radRank-1]
+
         coatMarkings = ["classic tabby", "rosette tabby", "barred ticked tabby", "ticked tabby", "mackerel tabby",
                         "classic tabby", "spotted tabby", "pinstripe tabby", "tuxedo", "tortoiseshell", "calico"]
+        possibleRank = ["Kit", "Apprentice", "Medicine Cat Apprentice",
+                        "Warrior", "Warrior", "Warrior", "Medicine Cat", "Elder"]
 
     print()
 
@@ -179,3 +206,4 @@ def main():
 
 
 main()
+
